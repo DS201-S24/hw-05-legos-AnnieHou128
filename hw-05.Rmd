@@ -1,7 +1,7 @@
 ---
 title: "HW 5 - Legos"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Annie Hou"
+date: "02/26/2024"
 output: html_document
 ---
 
@@ -19,24 +19,45 @@ load("data/lego_sales.rda")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+In this sample, the three most common names of purchasers are Jackson, Jacob, and Joseph.
+
+```{r ex1}
+common_first_names <- lego_sales %>%
+  group_by(first_name) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+
+print(common_first_names)
+```
+
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 2 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+In this sample, the three most common themes of Lego sets purchased are Star Wars, Nexo Knights, and Gear (tied with Mixels).
+
+```{r ex2}
+common_themes <- lego_sales %>%
+  group_by(theme) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) 
+
+print(common_themes)
+```
+
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+Among the most common theme of Lego sets purchased (which is Star Wars from the previous exercise), the most common subtheme is Skybound; but there are more subthemes not available, so we could better determine the most common purchased subtheme is the data is more complete.
+
+```{r ex3}
+most_common_theme <- lego_sales %>%
+  mutate(theme = "Star Wars") %>%
+  count(subtheme) %>%
+  arrange(desc(n))
+
+print(most_common_theme)
+```
+
 
 ### Exercise 4
 
